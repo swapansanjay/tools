@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Percent Error Calculator - Multi-Tools Website</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../styles/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div id="header-placeholder"></div>
+
+    <main class="container py-4">
+        <h1 class="text-center mb-4">Percent Error Calculator</h1>
+
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-body">
+                        <!-- Calculator Type Selection -->
+                        <div class="mb-4">
+                            <label class="form-label">Select Error Type:</label>
+                            <select class="form-select" id="errorType" onchange="switchCalculator()">
+                                <option value="percent">Percent Error</option>
+                                <option value="absolute">Absolute Error</option>
+                                <option value="relative">Relative Error</option>
+                            </select>
+                        </div>
+
+                        <!-- Input Fields -->
+                        <div class="mb-3">
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label class="form-label">Experimental/Measured Value:</label>
+                                    <input type="number" class="form-control" id="measuredValue" placeholder="Enter measured value">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Theoretical/Actual Value:</label>
+                                    <input type="number" class="form-control" id="actualValue" placeholder="Enter actual value">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Calculate Button -->
+                        <div class="text-center mb-3">
+                            <button class="btn btn-primary" onclick="calculate()">
+                                <i class="fas fa-calculator"></i> Calculate
+                            </button>
+                        </div>
+
+                        <!-- Result Display -->
+                        <div class="result-box p-3 bg-light rounded">
+                            <h5>Results:</h5>
+                            <div id="percentError" class="mb-2">
+                                <strong>Percent Error:</strong> <span id="percentErrorValue"></span>
+                            </div>
+                            <div id="absoluteError" class="mb-2">
+                                <strong>Absolute Error:</strong> <span id="absoluteErrorValue"></span>
+                            </div>
+                            <div id="relativeError" class="mb-2">
+                                <strong>Relative Error:</strong> <span id="relativeErrorValue"></span>
+                            </div>
+                            <div id="explanation" class="text-muted mt-2 small"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card mt-4">
+                    <div class="card-header">
+                        <h5 class="mb-0">Quick Guide</h5>
+                    </div>
+                    <div class="card-body">
+                        <ul>
+                            <li><strong>Percent Error:</strong> The difference between measured and actual values as a percentage of the actual value.</li>
+                            <li><strong>Absolute Error:</strong> The absolute difference between measured and actual values.</li>
+                            <li><strong>Relative Error:</strong> The ratio of absolute error to the actual value.</li>
+                            <li>Formula: Percent Error = |Measured - Actual| / |Actual| × 100%</li>
+                            <li>A smaller percent error indicates more accurate measurements.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card mt-4">
+                    <div class="card-header">
+                        <h5 class="mb-0">Common Error Ranges</h5>
+                    </div>
+                    <div class="card-body">
+                        <ul>
+                            <li><strong>Excellent:</strong> < 1%</li>
+                            <li><strong>Very Good:</strong> 1-2%</li>
+                            <li><strong>Good:</strong> 2-5%</li>
+                            <li><strong>Fair:</strong> 5-10%</li>
+                            <li><strong>Poor:</strong> > 10%</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../../js/main.js"></script>
+    <script>
+        function switchCalculator() {
+            calculate();
+        }
+
+        function calculate() {
+            const measured = parseFloat(document.getElementById('measuredValue').value);
+            const actual = parseFloat(document.getElementById('actualValue').value);
+
+            if (isNaN(measured) || isNaN(actual)) {
+                showError('Please enter valid numbers');
+                return;
+            }
+
+            if (actual === 0) {
+                showError('Actual value cannot be zero');
+                return;
+            }
+
+            const absoluteError = Math.abs(measured - actual);
+            const relativeError = absoluteError / Math.abs(actual);
+            const percentError = relativeError * 100;
+
+            // Display results
+            document.getElementById('percentErrorValue').innerHTML = 
+                `${percentError.toFixed(4)}%`;
+            document.getElementById('absoluteErrorValue').innerHTML = 
+                `${absoluteError.toFixed(4)}`;
+            document.getElementById('relativeErrorValue').innerHTML = 
+                `${relativeError.toFixed(4)}`;
+
+            // Add explanation
+            let accuracy;
+            if (percentError < 1) accuracy = 'Excellent';
+            else if (percentError < 2) accuracy = 'Very Good';
+            else if (percentError < 5) accuracy = 'Good';
+            else if (percentError < 10) accuracy = 'Fair';
+            else accuracy = 'Poor';
+
+            document.getElementById('explanation').innerHTML = 
+                `The measurement has ${accuracy.toLowerCase()} accuracy with a ${percentError.toFixed(2)}% error.`;
+        }
+
+        function showError(message) {
+            document.getElementById('percentErrorValue').innerHTML = message;
+            document.getElementById('absoluteErrorValue').innerHTML = '';
+            document.getElementById('relativeErrorValue').innerHTML = '';
+            document.getElementById('explanation').innerHTML = '';
+        }
+
+        // Add keyboard support
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter') {
+                calculate();
+            }
+        });
+    </script>
+</body>
+</html> 

@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Free online fraction calculator. Add, subtract, multiply and divide fractions, convert between mixed numbers, decimals, and percentages.">
+    <meta name="keywords" content="fraction calculator, mixed number calculator, decimal to fraction, percentage to fraction, fraction operations">
+    <title>Fraction Calculator | UnitsCalculator.net</title>
+    <?php include '../../includes/header.html'; ?>
+    <style>
+        .calculator-section {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .result-box {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+        .quick-guide {
+            background-color: #e9ecef;
+            padding: 20px;
+            border-radius: 5px;
+            margin-top: 30px;
+        }
+        .fraction-input {
+            width: 80px !important;
+            display: inline-block !important;
+        }
+        .fraction-divider {
+            width: 80px;
+            height: 2px;
+            background-color: #000;
+            margin: 5px 0;
+        }
+        .operation-symbol {
+            font-size: 24px;
+            padding: 0 10px;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="calculator-section">
+            <h1 class="text-center mb-4">Fraction Calculator</h1>
+            
+            <!-- Calculator Type Selection -->
+            <div class="form-group mb-4">
+                <label for="calculatorType">Select Calculation Type:</label>
+                <select class="form-control" id="calculatorType" onchange="switchCalculator()">
+                    <option value="arithmetic">Fraction Arithmetic</option>
+                    <option value="mixed">Mixed Number Conversion</option>
+                    <option value="decimal">Decimal/Percentage Conversion</option>
+                    <option value="simplify">Simplify Fraction</option>
+                </select>
+            </div>
+
+            <!-- Fraction Arithmetic Calculator -->
+            <div id="arithmeticCalculator" class="calculator-form">
+                <div class="row align-items-center">
+                    <!-- First Fraction -->
+                    <div class="col-md-3">
+                        <input type="number" class="form-control fraction-input mb-2" id="num1" placeholder="Num">
+                        <div class="fraction-divider"></div>
+                        <input type="number" class="form-control fraction-input" id="den1" placeholder="Den">
+                    </div>
+                    
+                    <!-- Operation -->
+                    <div class="col-md-2 text-center">
+                        <select class="form-control" id="operation">
+                            <option value="+">+</option>
+                            <option value="-">−</option>
+                            <option value="*">×</option>
+                            <option value="/">÷</option>
+                        </select>
+                    </div>
+                    
+                    <!-- Second Fraction -->
+                    <div class="col-md-3">
+                        <input type="number" class="form-control fraction-input mb-2" id="num2" placeholder="Num">
+                        <div class="fraction-divider"></div>
+                        <input type="number" class="form-control fraction-input" id="den2" placeholder="Den">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mixed Number Converter -->
+            <div id="mixedCalculator" class="calculator-form" style="display: none;">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label>Enter Mixed Number:</label>
+                        <div class="input-group">
+                            <input type="number" class="form-control" id="wholeNumber" placeholder="Whole">
+                            <input type="number" class="form-control fraction-input" id="mixedNum" placeholder="Num">
+                            <span class="input-group-text">/</span>
+                            <input type="number" class="form-control fraction-input" id="mixedDen" placeholder="Den">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Decimal/Percentage Converter -->
+            <div id="decimalCalculator" class="calculator-form" style="display: none;">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="decimalInput">Enter Decimal or Percentage:</label>
+                            <input type="number" class="form-control" id="decimalInput" step="0.0001">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Input Type:</label>
+                            <select class="form-control" id="inputType">
+                                <option value="decimal">Decimal</option>
+                                <option value="percentage">Percentage</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Simplify Fraction -->
+            <div id="simplifyCalculator" class="calculator-form" style="display: none;">
+                <div class="row justify-content-center">
+                    <div class="col-md-4">
+                        <input type="number" class="form-control fraction-input mb-2" id="simplifyNum" placeholder="Num">
+                        <div class="fraction-divider"></div>
+                        <input type="number" class="form-control fraction-input" id="simplifyDen" placeholder="Den">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Calculate Button -->
+            <div class="text-center mt-4">
+                <button class="btn btn-primary" onclick="calculate()">Calculate</button>
+            </div>
+
+            <!-- Results Section -->
+            <div id="result" class="result-box" style="display: none;">
+                <h4>Results:</h4>
+                <div id="resultContent"></div>
+            </div>
+
+            <!-- Quick Guide -->
+            <div class="quick-guide">
+                <h4>Quick Guide: Working with Fractions</h4>
+                <ul>
+                    <li><strong>Proper Fractions:</strong> Numerator is less than denominator (e.g., 3/4)</li>
+                    <li><strong>Improper Fractions:</strong> Numerator is greater than denominator (e.g., 5/3)</li>
+                    <li><strong>Mixed Numbers:</strong> Whole number with a proper fraction (e.g., 1 2/3)</li>
+                    <li><strong>Simplifying:</strong> Divide both numerator and denominator by their GCD</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function switchCalculator() {
+            const type = document.getElementById('calculatorType').value;
+            document.querySelectorAll('.calculator-form').forEach(form => form.style.display = 'none');
+            document.getElementById(type + 'Calculator').style.display = 'block';
+            clearResult();
+        }
+
+        function clearResult() {
+            document.getElementById('result').style.display = 'none';
+            document.getElementById('resultContent').innerHTML = '';
+        }
+
+        function calculate() {
+            const type = document.getElementById('calculatorType').value;
+            let result = '';
+
+            switch(type) {
+                case 'arithmetic':
+                    result = calculateArithmetic();
+                    break;
+                case 'mixed':
+                    result = convertMixedNumber();
+                    break;
+                case 'decimal':
+                    result = convertDecimal();
+                    break;
+                case 'simplify':
+                    result = simplifyFraction();
+                    break;
+            }
+
+            if (result) {
+                document.getElementById('resultContent').innerHTML = result;
+                document.getElementById('result').style.display = 'block';
+            }
+        }
+
+        function calculateArithmetic() {
+            const num1 = parseInt(document.getElementById('num1').value);
+            const den1 = parseInt(document.getElementById('den1').value);
+            const num2 = parseInt(document.getElementById('num2').value);
+            const den2 = parseInt(document.getElementById('den2').value);
+            const operation = document.getElementById('operation').value;
+
+            if (!num1 || !den1 || !num2 || !den2) {
+                return 'Please enter all values.';
+            }
+
+            if (den1 === 0 || den2 === 0) {
+                return 'Denominator cannot be zero.';
+            }
+
+            let resultNum, resultDen;
+
+            switch(operation) {
+                case '+':
+                    resultNum = num1 * den2 + num2 * den1;
+                    resultDen = den1 * den2;
+                    break;
+                case '-':
+                    resultNum = num1 * den2 - num2 * den1;
+                    resultDen = den1 * den2;
+                    break;
+                case '*':
+                    resultNum = num1 * num2;
+                    resultDen = den1 * den2;
+                    break;
+                case '/':
+                    if (num2 === 0) {
+                        return 'Cannot divide by zero.';
+                    }
+                    resultNum = num1 * den2;
+                    resultDen = den1 * num2;
+                    break;
+            }
+
+            const gcd = findGCD(Math.abs(resultNum), Math.abs(resultDen));
+            const simplified = `${resultNum/gcd}/${resultDen/gcd}`;
+            const decimal = (resultNum/resultDen).toFixed(4);
+            const mixed = toMixedNumber(resultNum/gcd, resultDen/gcd);
+
+            return `
+                <p><strong>Result:</strong></p>
+                <p>Fraction: ${simplified}</p>
+                <p>Mixed Number: ${mixed}</p>
+                <p>Decimal: ${decimal}</p>
+            `;
+        }
+
+        function convertMixedNumber() {
+            const whole = parseInt(document.getElementById('wholeNumber').value) || 0;
+            const num = parseInt(document.getElementById('mixedNum').value);
+            const den = parseInt(document.getElementById('mixedDen').value);
+
+            if (!num || !den) {
+                return 'Please enter the fraction part.';
+            }
+
+            if (den === 0) {
+                return 'Denominator cannot be zero.';
+            }
+
+            const improperNum = whole * den + num;
+            const gcd = findGCD(Math.abs(improperNum), Math.abs(den));
+            const decimal = (improperNum/den).toFixed(4);
+
+            return `
+                <p><strong>Mixed Number:</strong> ${whole} ${num}/${den}</p>
+                <p><strong>Improper Fraction:</strong> ${improperNum}/${den}</p>
+                <p><strong>Simplified Fraction:</strong> ${improperNum/gcd}/${den/gcd}</p>
+                <p><strong>Decimal:</strong> ${decimal}</p>
+            `;
+        }
+
+        function convertDecimal() {
+            const input = parseFloat(document.getElementById('decimalInput').value);
+            const type = document.getElementById('inputType').value;
+
+            if (isNaN(input)) {
+                return 'Please enter a valid number.';
+            }
+
+            let decimal = input;
+            if (type === 'percentage') {
+                decimal = input / 100;
+            }
+
+            const fraction = decimalToFraction(decimal);
+            const mixed = toMixedNumber(fraction.num, fraction.den);
+
+            return `
+                <p><strong>Decimal:</strong> ${decimal}</p>
+                <p><strong>Percentage:</strong> ${(decimal * 100).toFixed(2)}%</p>
+                <p><strong>Fraction:</strong> ${fraction.num}/${fraction.den}</p>
+                <p><strong>Mixed Number:</strong> ${mixed}</p>
+            `;
+        }
+
+        function simplifyFraction() {
+            const num = parseInt(document.getElementById('simplifyNum').value);
+            const den = parseInt(document.getElementById('simplifyDen').value);
+
+            if (!num || !den) {
+                return 'Please enter both numerator and denominator.';
+            }
+
+            if (den === 0) {
+                return 'Denominator cannot be zero.';
+            }
+
+            const gcd = findGCD(Math.abs(num), Math.abs(den));
+            const decimal = (num/den).toFixed(4);
+            const mixed = toMixedNumber(num/gcd, den/gcd);
+
+            return `
+                <p><strong>Original Fraction:</strong> ${num}/${den}</p>
+                <p><strong>Simplified Fraction:</strong> ${num/gcd}/${den/gcd}</p>
+                <p><strong>Mixed Number:</strong> ${mixed}</p>
+                <p><strong>Decimal:</strong> ${decimal}</p>
+                <p><strong>Percentage:</strong> ${(num/den * 100).toFixed(2)}%</p>
+            `;
+        }
+
+        function findGCD(a, b) {
+            return b === 0 ? a : findGCD(b, a % b);
+        }
+
+        function toMixedNumber(num, den) {
+            if (num < den) return `${num}/${den}`;
+            const whole = Math.floor(num/den);
+            const remainder = num % den;
+            return remainder === 0 ? whole : `${whole} ${remainder}/${den}`;
+        }
+
+        function decimalToFraction(decimal) {
+            const precision = 1000000;
+            const gcd = findGCD(Math.round(decimal * precision), precision);
+            return {
+                num: Math.round(decimal * precision) / gcd,
+                den: precision / gcd
+            };
+        }
+
+        // Add keyboard support
+        document.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                calculate();
+            }
+        });
+    </script>
+
+    <?php include '../../includes/footer.html'; ?>
+</body>
+</html> 

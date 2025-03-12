@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Free online ratio calculator. Convert between ratio formats, find equivalent ratios, solve proportions, and scale ratios easily.">
+    <meta name="keywords" content="ratio calculator, proportion calculator, scale factor, equivalent ratios, ratio to percentage, online calculator">
+    <title>Ratio Calculator | UnitsCalculator.net</title>
+    <?php include '../../includes/header.html'; ?>
+    <style>
+        .calculator-section {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .result-box {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+        .quick-guide {
+            background-color: #e9ecef;
+            padding: 20px;
+            border-radius: 5px;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="calculator-section">
+            <h1 class="text-center mb-4">Ratio Calculator</h1>
+            
+            <!-- Calculator Type Selection -->
+            <div class="form-group mb-4">
+                <label for="calculatorType">Select Calculation Type:</label>
+                <select class="form-control" id="calculatorType" onchange="switchCalculator()">
+                    <option value="basic">Basic Ratio</option>
+                    <option value="equivalent">Find Equivalent Ratios</option>
+                    <option value="proportion">Solve Proportion</option>
+                    <option value="scale">Scale Factor</option>
+                </select>
+            </div>
+
+            <!-- Basic Ratio Calculator -->
+            <div id="basicCalculator" class="calculator-form">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="firstNumber">First Number:</label>
+                            <input type="number" class="form-control" id="firstNumber">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="secondNumber">Second Number:</label>
+                            <input type="number" class="form-control" id="secondNumber">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Equivalent Ratios Calculator -->
+            <div id="equivalentCalculator" class="calculator-form" style="display: none;">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label>Original Ratio:</label>
+                        <div class="input-group">
+                            <input type="number" class="form-control" id="origFirst">
+                            <span class="input-group-text">:</span>
+                            <input type="number" class="form-control" id="origSecond">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <label>Target Value:</label>
+                        <input type="number" class="form-control" id="targetValue" placeholder="Enter a number to find equivalent ratio">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Proportion Calculator -->
+            <div id="proportionCalculator" class="calculator-form" style="display: none;">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label>First Ratio:</label>
+                        <div class="input-group">
+                            <input type="number" class="form-control" id="prop1First">
+                            <span class="input-group-text">:</span>
+                            <input type="number" class="form-control" id="prop1Second">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <label>Second Ratio:</label>
+                        <div class="input-group">
+                            <input type="number" class="form-control" id="prop2First">
+                            <span class="input-group-text">:</span>
+                            <input type="text" class="form-control" id="prop2Second" placeholder="x">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scale Factor Calculator -->
+            <div id="scaleCalculator" class="calculator-form" style="display: none;">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label>Original Value:</label>
+                        <input type="number" class="form-control" id="originalValue">
+                    </div>
+                    <div class="col-md-6">
+                        <label>Scale Factor:</label>
+                        <input type="number" class="form-control" id="scaleFactor" step="0.1">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Calculate Button -->
+            <div class="text-center mt-4">
+                <button class="btn btn-primary" onclick="calculate()">Calculate</button>
+            </div>
+
+            <!-- Results Section -->
+            <div id="result" class="result-box" style="display: none;">
+                <h4>Results:</h4>
+                <div id="resultContent"></div>
+            </div>
+
+            <!-- Quick Guide -->
+            <div class="quick-guide">
+                <h4>Quick Guide: Understanding Ratios</h4>
+                <ul>
+                    <li><strong>Basic Ratio:</strong> Compares two or more related quantities (e.g., 3:4)</li>
+                    <li><strong>Equivalent Ratios:</strong> Different ratios that represent the same relationship (e.g., 1:2 = 2:4 = 3:6)</li>
+                    <li><strong>Proportion:</strong> An equation stating that two ratios are equal (e.g., 1:2 = x:4)</li>
+                    <li><strong>Scale Factor:</strong> The number that multiplies a quantity to create an enlargement or reduction</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function switchCalculator() {
+            const type = document.getElementById('calculatorType').value;
+            document.querySelectorAll('.calculator-form').forEach(form => form.style.display = 'none');
+            document.getElementById(type + 'Calculator').style.display = 'block';
+            clearResult();
+        }
+
+        function clearResult() {
+            document.getElementById('result').style.display = 'none';
+            document.getElementById('resultContent').innerHTML = '';
+        }
+
+        function calculate() {
+            const type = document.getElementById('calculatorType').value;
+            let result = '';
+
+            switch(type) {
+                case 'basic':
+                    result = calculateBasicRatio();
+                    break;
+                case 'equivalent':
+                    result = calculateEquivalentRatio();
+                    break;
+                case 'proportion':
+                    result = calculateProportion();
+                    break;
+                case 'scale':
+                    result = calculateScale();
+                    break;
+            }
+
+            if (result) {
+                document.getElementById('resultContent').innerHTML = result;
+                document.getElementById('result').style.display = 'block';
+            }
+        }
+
+        function calculateBasicRatio() {
+            const first = parseFloat(document.getElementById('firstNumber').value);
+            const second = parseFloat(document.getElementById('secondNumber').value);
+
+            if (!first || !second) {
+                return 'Please enter both numbers.';
+            }
+
+            const gcd = findGCD(first, second);
+            const simplified = `${first/gcd}:${second/gcd}`;
+            const decimal = (first/second).toFixed(4);
+            const percentage = ((first/second) * 100).toFixed(2);
+
+            return `
+                <p><strong>Original Ratio:</strong> ${first}:${second}</p>
+                <p><strong>Simplified Ratio:</strong> ${simplified}</p>
+                <p><strong>Decimal Form:</strong> ${decimal}</p>
+                <p><strong>Percentage:</strong> ${percentage}%</p>
+            `;
+        }
+
+        function calculateEquivalentRatio() {
+            const first = parseFloat(document.getElementById('origFirst').value);
+            const second = parseFloat(document.getElementById('origSecond').value);
+            const target = parseFloat(document.getElementById('targetValue').value);
+
+            if (!first || !second || !target) {
+                return 'Please enter all values.';
+            }
+
+            const factor = target / first;
+            const equivalent = second * factor;
+
+            return `
+                <p><strong>Original Ratio:</strong> ${first}:${second}</p>
+                <p><strong>Equivalent Ratio:</strong> ${target}:${equivalent}</p>
+                <p><strong>Scale Factor:</strong> ×${factor.toFixed(2)}</p>
+            `;
+        }
+
+        function calculateProportion() {
+            const a = parseFloat(document.getElementById('prop1First').value);
+            const b = parseFloat(document.getElementById('prop1Second').value);
+            const c = parseFloat(document.getElementById('prop2First').value);
+
+            if (!a || !b || !c) {
+                return 'Please enter all known values.';
+            }
+
+            const x = (b * c) / a;
+
+            return `
+                <p><strong>Proportion:</strong> ${a}:${b} = ${c}:${x}</p>
+                <p><strong>Missing Value (x):</strong> ${x.toFixed(2)}</p>
+            `;
+        }
+
+        function calculateScale() {
+            const original = parseFloat(document.getElementById('originalValue').value);
+            const factor = parseFloat(document.getElementById('scaleFactor').value);
+
+            if (!original || !factor) {
+                return 'Please enter both values.';
+            }
+
+            const scaled = original * factor;
+
+            return `
+                <p><strong>Original Value:</strong> ${original}</p>
+                <p><strong>Scale Factor:</strong> ×${factor}</p>
+                <p><strong>Scaled Value:</strong> ${scaled}</p>
+            `;
+        }
+
+        function findGCD(a, b) {
+            return b === 0 ? a : findGCD(b, a % b);
+        }
+
+        // Add keyboard support
+        document.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                calculate();
+            }
+        });
+    </script>
+
+    <?php include '../../includes/footer.html'; ?>
+</body>
+</html> 

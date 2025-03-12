@@ -1,0 +1,135 @@
+/* Tool Page Specific Styles */
+
+/* Tool Card */
+.tool-card {
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin-bottom: 2rem;
+}
+
+.tool-title {
+    font-size: 1.75rem;
+    margin-bottom: 0;
+    color: var(--primary-color);
+}
+
+/* Input Section */
+.tool-input-section {
+    background-color: var(--background-color);
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin: 1rem 0;
+}
+
+.input-group-text {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+}
+
+/* Formula Section */
+.formula-section {
+    background-color: white;
+    padding: 1rem;
+    border-radius: 8px;
+}
+
+.formula-display {
+    font-family: monospace;
+    font-size: 1.1rem;
+}
+
+/* Result Section */
+.tool-result-section {
+    background-color: #e8f4ff;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin: 1rem 0;
+}
+
+.result-display {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+/* Instructions Section */
+.tool-instructions {
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+}
+
+.tool-instructions ol {
+    padding-left: 1.2rem;
+}
+
+.tool-instructions li {
+    margin-bottom: 0.5rem;
+}
+
+/* Additional Information */
+.additional-info h3 {
+    font-size: 1.3rem;
+    margin-top: 1.5rem;
+}
+
+/* Related Tools */
+.related-tools li {
+    margin-bottom: 0.5rem;
+}
+
+.related-tools a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+.related-tools a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .tool-input-section .col-md-2 {
+        display: none; /* Hide the arrow on mobile */
+    }
+    
+    .tool-input-section .row > div {
+        margin-bottom: 1rem;
+    }
+    
+    .tool-title {
+        font-size: 1.5rem;
+    }
+    
+    .formula-display {
+        font-size: 1rem;
+    }
+}
+
+/* Error States */
+.input-error {
+    border-color: #dc3545;
+}
+
+.error-message {
+    color: #dc3545;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+}
+
+/* Loading States */
+.loading {
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+.loading::after {
+    content: "...";
+    animation: loading-dots 1s infinite;
+}
+
+@keyframes loading-dots {
+    0% { content: "."; }
+    33% { content: ".."; }
+    66% { content: "..."; }
+} 

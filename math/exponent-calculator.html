@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exponent Calculator - Multi-Tools Website</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../styles/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css">
+</head>
+<body>
+    <div id="header-placeholder"></div>
+
+    <main class="container py-4">
+        <h1 class="text-center mb-4">Exponent Calculator</h1>
+
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-body">
+                        <!-- Calculator Type Selection -->
+                        <div class="mb-4">
+                            <label class="form-label">Select Operation:</label>
+                            <select class="form-select" id="operationType" onchange="switchOperation()">
+                                <option value="power">Power (x^n)</option>
+                                <option value="root">nth Root</option>
+                                <option value="scientific">Scientific Notation</option>
+                                <option value="laws">Exponent Laws</option>
+                            </select>
+                        </div>
+
+                        <!-- Power Calculator -->
+                        <div id="powerCalculator">
+                            <div class="mb-3">
+                                <label class="form-label">Calculate Power:</label>
+                                <div class="input-group mb-3">
+                                    <input type="number" class="form-control" id="baseValue" placeholder="Base (x)">
+                                    <span class="input-group-text">^</span>
+                                    <input type="number" class="form-control" id="exponentValue" placeholder="Exponent (n)">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Root Calculator -->
+                        <div id="rootCalculator" style="display: none;">
+                            <div class="mb-3">
+                                <label class="form-label">Calculate Root:</label>
+                                <div class="input-group mb-3">
+                                    <input type="number" class="form-control" id="rootIndex" placeholder="Root index (n)">
+                                    <span class="input-group-text">√</span>
+                                    <input type="number" class="form-control" id="radicand" placeholder="Number">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Scientific Notation Calculator -->
+                        <div id="scientificCalculator" style="display: none;">
+                            <div class="mb-3">
+                                <label class="form-label">Convert Number:</label>
+                                <input type="number" class="form-control mb-3" id="scientificNumber" placeholder="Enter number">
+                                <div class="form-check mb-3">
+                                    <input class="form-check-input" type="checkbox" id="normalToScientific" checked>
+                                    <label class="form-check-label" for="normalToScientific">
+                                        Convert to scientific notation
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Exponent Laws Calculator -->
+                        <div id="lawsCalculator" style="display: none;">
+                            <div class="mb-3">
+                                <label class="form-label">Select Law:</label>
+                                <select class="form-select mb-3" id="lawType">
+                                    <option value="multiply">Multiplication (x^a × x^b)</option>
+                                    <option value="divide">Division (x^a ÷ x^b)</option>
+                                    <option value="power">Power of Power ((x^a)^b)</option>
+                                </select>
+                                <div class="input-group mb-3">
+                                    <input type="number" class="form-control" id="firstBase" placeholder="Base">
+                                    <span class="input-group-text">^</span>
+                                    <input type="number" class="form-control" id="firstExponent" placeholder="First exponent">
+                                </div>
+                                <div class="input-group mb-3">
+                                    <input type="number" class="form-control" id="secondExponent" placeholder="Second exponent">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Calculate Button -->
+                        <div class="text-center mb-3">
+                            <button class="btn btn-primary" onclick="calculate()">
+                                <i class="fas fa-calculator"></i> Calculate
+                            </button>
+                        </div>
+
+                        <!-- Result Display -->
+                        <div class="result-box p-3 bg-light rounded">
+                            <h5>Result:</h5>
+                            <div id="result" class="fs-4 text-center"></div>
+                            <div id="explanation" class="text-muted mt-2 small"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card mt-4">
+                    <div class="card-header">
+                        <h5 class="mb-0">Quick Guide</h5>
+                    </div>
+                    <div class="card-body">
+                        <ul>
+                            <li><strong>Power:</strong> Calculate x raised to the power n (x^n)</li>
+                            <li><strong>Root:</strong> Calculate the nth root of a number</li>
+                            <li><strong>Scientific Notation:</strong> Convert between standard and scientific notation</li>
+                            <li><strong>Exponent Laws:</strong> Apply rules of exponents</li>
+                        </ul>
+                        <h6 class="mt-3">Exponent Laws:</h6>
+                        <ul>
+                            <li>Multiplication: x^a × x^b = x^(a+b)</li>
+                            <li>Division: x^a ÷ x^b = x^(a-b)</li>
+                            <li>Power of Power: (x^a)^b = x^(a×b)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../../js/main.js"></script>
+    <script>
+        function switchOperation() {
+            const type = document.getElementById('operationType').value;
+            document.getElementById('powerCalculator').style.display = 'none';
+            document.getElementById('rootCalculator').style.display = 'none';
+            document.getElementById('scientificCalculator').style.display = 'none';
+            document.getElementById('lawsCalculator').style.display = 'none';
+            document.getElementById(type + 'Calculator').style.display = 'block';
+            clearResult();
+        }
+
+        function clearResult() {
+            document.getElementById('result').innerHTML = '';
+            document.getElementById('explanation').innerHTML = '';
+        }
+
+        function calculate() {
+            const type = document.getElementById('operationType').value;
+            switch(type) {
+                case 'power':
+                    calculatePower();
+                    break;
+                case 'root':
+                    calculateRoot();
+                    break;
+                case 'scientific':
+                    calculateScientific();
+                    break;
+                case 'laws':
+                    calculateLaws();
+                    break;
+            }
+        }
+
+        function calculatePower() {
+            const base = parseFloat(document.getElementById('baseValue').value);
+            const exponent = parseFloat(document.getElementById('exponentValue').value);
+
+            if (isNaN(base) || isNaN(exponent)) {
+                showError('Please enter valid numbers');
+                return;
+            }
+
+            const result = Math.pow(base, exponent);
+            document.getElementById('result').innerHTML = result.toFixed(6);
+            document.getElementById('explanation').innerHTML = 
+                `${base}^${exponent} = ${result}`;
+        }
+
+        function calculateRoot() {
+            const index = parseFloat(document.getElementById('rootIndex').value);
+            const radicand = parseFloat(document.getElementById('radicand').value);
+
+            if (isNaN(index) || isNaN(radicand)) {
+                showError('Please enter valid numbers');
+                return;
+            }
+
+            if (index === 0) {
+                showError('Root index cannot be zero');
+                return;
+            }
+
+            const result = Math.pow(radicand, 1/index);
+            document.getElementById('result').innerHTML = result.toFixed(6);
+            document.getElementById('explanation').innerHTML = 
+                `The ${index}th root of ${radicand} is ${result}`;
+        }
+
+        function calculateScientific() {
+            const number = parseFloat(document.getElementById('scientificNumber').value);
+            const toScientific = document.getElementById('normalToScientific').checked;
+
+            if (isNaN(number)) {
+                showError('Please enter a valid number');
+                return;
+            }
+
+            if (toScientific) {
+                const exponent = Math.floor(Math.log10(Math.abs(number)));
+                const coefficient = number / Math.pow(10, exponent);
+                document.getElementById('result').innerHTML = 
+                    `${coefficient.toFixed(4)} × 10^${exponent}`;
+                document.getElementById('explanation').innerHTML = 
+                    `${number} in scientific notation`;
+            } else {
+                const result = number.toString();
+                document.getElementById('result').innerHTML = parseFloat(result);
+                document.getElementById('explanation').innerHTML = 
+                    `Scientific notation converted to standard form`;
+            }
+        }
+
+        function calculateLaws() {
+            const base = parseFloat(document.getElementById('firstBase').value);
+            const exp1 = parseFloat(document.getElementById('firstExponent').value);
+            const exp2 = parseFloat(document.getElementById('secondExponent').value);
+            const lawType = document.getElementById('lawType').value;
+
+            if (isNaN(base) || isNaN(exp1) || isNaN(exp2)) {
+                showError('Please enter valid numbers');
+                return;
+            }
+
+            let result, explanation;
+            switch(lawType) {
+                case 'multiply':
+                    result = Math.pow(base, exp1 + exp2);
+                    explanation = `${base}^${exp1} × ${base}^${exp2} = ${base}^(${exp1}+${exp2}) = ${result}`;
+                    break;
+                case 'divide':
+                    result = Math.pow(base, exp1 - exp2);
+                    explanation = `${base}^${exp1} ÷ ${base}^${exp2} = ${base}^(${exp1}-${exp2}) = ${result}`;
+                    break;
+                case 'power':
+                    result = Math.pow(base, exp1 * exp2);
+                    explanation = `(${base}^${exp1})^${exp2} = ${base}^(${exp1}×${exp2}) = ${result}`;
+                    break;
+            }
+
+            document.getElementById('result').innerHTML = result.toFixed(6);
+            document.getElementById('explanation').innerHTML = explanation;
+        }
+
+        function showError(message) {
+            document.getElementById('result').innerHTML = message;
+            document.getElementById('explanation').innerHTML = '';
+        }
+
+        // Add keyboard support
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter') {
+                calculate();
+            }
+        });
+    </script>
+</body>
+</html> 

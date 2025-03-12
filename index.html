@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Multi-Tools Website - Over 200 online tools for unit conversion, calculations, and more">
+    <title>Multi-Tools Website - Your All-in-One Tools Solution</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header will be loaded dynamically -->
+    <div id="header-placeholder"></div>
+
+    <!-- Main Content -->
+    <main class="container-fluid py-4">
+        <!-- Language Selector -->
+        <div class="row mb-4">
+            <div class="col-12 text-end">
+                <select class="form-select form-select-sm d-inline-block w-auto" id="languageSelect">
+                    <option value="en">English</option>
+                    <option value="hi">Hindi</option>
+                    <option value="de">German</option>
+                    <option value="fr">French</option>
+                    <option value="ar">Arabic</option>
+                    <option value="es">Spanish</option>
+                    <option value="ur">Urdu</option>
+                    <option value="sv">Swedish</option>
+                    <option value="no">Norwegian</option>
+                    <option value="ta">Tamil</option>
+                    <option value="kn">Kannada</option>
+                    <option value="ml">Malayalam</option>
+                    <option value="mr">Marathi</option>
+                    <option value="it">Italian</option>
+                    <option value="cs">Czech</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="row mb-4">
+            <div class="col-md-6 mx-auto">
+                <div class="input-group">
+                    <input type="text" class="form-control" id="searchTools" placeholder="Search for tools...">
+                    <button class="btn btn-primary" type="button">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tools Grid -->
+        <div class="row g-4">
+            <!-- Unit Converters Section -->
+            <div class="col-12">
+                <h2 class="section-title border-bottom pb-2 mb-4">Unit Converters</h2>
+                <div class="row g-4">
+                    <!-- Length Converters -->
+                    <div class="col-xl-3 col-lg-4 col-md-6">
+                        <div class="card h-100">
+                            <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center" style="cursor: pointer" data-bs-toggle="collapse" data-bs-target="#lengthConverters">
+                                <h3 class="h5 mb-0">Length Converters</h3>
+                                <i class="fas fa-chevron-down" style="transition: transform 0.3s"></i>
+                            </div>
+                            <div id="lengthConverters" class="collapse">
+                                <div class="card-body">
+                                    <div class="row g-2">
+                                        <div class="col-6">
+                                            <div class="list-group">
+                                                <a href="tools/converters/length/meters-to-yards.html" class="list-group-item list-group-item-action">Meters to Yards</a>
+                                                <a href="tools/converters/length/yards-to-meters.html" class="list-group-item list-group-item-action">Yards to Meters</a>
+                                                <a href="tools/converters/length/meters-to-feet.html" class="list-group-item list-group-item-action">Meters to Feet</a>
+                                                <a href="tools/converters/length/feet-to-meters.html" class="list-group-item list-group-item-action">Feet to Meters</a>
+                                                <a href="tools/converters/length/feet-to-inches.html" class="list-group-item list-group-item-action">Feet to Inches</a>
+                                                <a href="tools/converters/length/meters-to-cm.html" class="list-group-item list-group-item-action">Meters to CM</a>
+                                                <a href="tools/converters/length/km-to-miles.html" class="list-group-item list-group-item-action">KM to Miles</a>
+                                                <a href="tools/converters/length/miles-to-km.html" class="list-group-item list-group-item-action">Miles to KM</a>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="list-group">
+                                                <a href="tools/converters/length/inches-to-cm.html" class="list-group-item list-group-item-action">Inches to CM</a>
+                                                <a href="tools/converters/length/inches-to-mm.html" class="list-group-item list-group-item-action">Inches to MM</a>
+                                                <a href="tools/converters/length/cm-to-inches.html" class="list-group-item list-group-item-action">CM to Inches</a>
+                                                <a href="tools/converters/length/mm-to-inches.html" class="list-group-item list-group-item-action">MM to Inches</a>
+                                                <a href="tools/converters/length/yards-to-feet.html" class="list-group-item list-group-item-action">Yards to Feet</a>
+                                                <a href="tools/converters/length/meters-to-mm.html" class="list-group-item list-group-item-action">Meters to MM</a>
+                                                <a href="tools/converters/length/nautical-to-miles.html" class="list-group-item list-group-item-action">Nautical to Miles</a>
+                                                <a href="tools/converters/length/nautical-to-km.html" class="list-group-item list-group-item-action">Nautical to KM</a>
+                                                <a href="tools/converters/length/inches-to-feet.html" class="list-group-item list-group-item-action">Inches to Feet</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Temperature Converters -->
+                    <div class="col-xl-3 col-lg-4 col-md-6">
+                        <div class="card h-100">
+                            <div class="card-header bg-danger text-white d-flex justify-content-between align-items-center" style="cursor: pointer" data-bs-toggle="collapse" data-bs-target="#temperatureConverters">
+                                <h3 class="h5 mb-0">Temperature Converters</h3>
+                                <i class="fas fa-chevron-down" style="transition: transform 0.3s"></i>
+                            </div>
+                            <div id="temperatureConverters" class="collapse">
+                                <div class="card-body">
+                                    <div class="list-group">
+                                        <a href="tools/converters/temperature/celsius-to-fahrenheit.html" class="list-group-item list-group-item-action">Celsius to Fahrenheit</a>
+                                        <a href="tools/converters/temperature/fahrenheit-to-celsius.html" class="list-group-item list-group-item-action">Fahrenheit to Celsius</a>
+                                        <a href="tools/converters/temperature/kelvin-to-celsius.html" class="list-group-item list-group-item-action">Kelvin to Celsius</a>
+                                        <a href="tools/converters/temperature/celsius-to-kelvin.html" class="list-group-item list-group-item-action">Celsius to Kelvin</a>
+                                        <a href="tools/converters/temperature/kelvin-to-fahrenheit.html" class="list-group-item list-group-item-action">Kelvin to Fahrenheit</a>
+                                        <a href="tools/converters/temperature/fahrenheit-to-kelvin.html" class="list-group-item list-group-item-action">Fahrenheit to Kelvin</a>
+                                        <a href="tools/converters/temperature/rankine-to-fahrenheit.html" class="list-group-item list-group-item-action">Rankine to Fahrenheit</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Weight Converters -->
+                    <div class="col-xl-3 col-lg-4 col-md-6">
+                        <div class="card h-100">
+                            <div class="card-header bg-success text-white d-flex justify-content-between align-items-center" style="cursor: pointer" data-bs-toggle="collapse" data-bs-target="#weightConverters">
+                                <h3 class="h5 mb-0">Weight Converters</h3>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div id="weightConverters" class="collapse">
+                                <div class="card-body">
+                                    <div class="list-group">
+                                        <a href="tools/converters/weight/kg-to-lbs.html" class="list-group-item list-group-item-action">Kilograms to Pounds</a>
+                                        <a href="tools/converters/weight/lbs-to-kg.html" class="list-group-item list-group-item-action">Pounds to Kilograms</a>
+                                        <a href="tools/converters/weight/grams-to-ounces.html" class="list-group-item list-group-item-action">Grams to Ounces</a>
+                                        <a href="tools/converters/weight/ounces-to-grams.html" class="list-group-item list-group-item-action">Ounces to Grams</a>
+                                        <a href="tools/converters/weight/ounces-to-pounds.html" class="list-group-item list-group-item-action">Ounces to Pounds</a>
+                                        <a href="tools/converters/weight/stone-to-kg.html" class="list-group-item list-group-item-action">Stone to Kilograms</a>
+                                        <a href="tools/converters/weight/tons-to-kg.html" class="list-group-item list-group-item-action">Tons to Kilograms</a>
+                                        <a href="tools/converters/weight/metric-tons-to-pounds.html" class="list-group-item list-group-item-action">Metric Tons to Pounds</a>
+                                        <a href="tools/converters/weight/mg-to-grams.html" class="list-group-item list-group-item-action">Milligrams to Grams</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Volume Converters -->
+                    <div class="col-xl-3 col-lg-4 col-md-6 mb-4">
+                        <div class="card h-100">
+                            <div class="card-header bg-info text-white d-flex justify-content-between align-items-center" style="cursor: pointer" data-bs-toggle="collapse" data-bs-target="#volumeConverters">
+                                <h2 class="h5 mb-0">Volume Converters</h2>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div id="volumeConverters" class="collapse">
+                                <div class="card-body">
+                                    <div class="list-group">
+                                        <a href="tools/converters/volume/liters-to-gallons.html" class="list-group-item list-group-item-action">Liters to Gallons</a>
+                                        <a href="tools/converters/volume/gallons-to-liters.html" class="list-group-item list-group-item-action">Gallons to Liters</a>
+                                        <a href="tools/converters/volume/ml-to-liters.html" class="list-group-item list-group-item-action">Milliliters to Liters</a>
+                                        <a href="tools/converters/volume/cubic-meters-to-liters.html" class="list-group-item list-group-item-action">Cubic Meters to Liters</a>
+                                        <a href="tools/converters/volume/fl-oz-to-ml.html" class="list-group-item list-group-item-action">Fluid Ounces to Milliliters</a>
+                                        <a href="tools/converters/volume/cups-to-ml.html" class="list-group-item list-group-item-action">Cups to Milliliters</a>
+                                        <a href="tools/converters/volume/pints-to-liters.html" class="list-group-item list-group-item-action">Pints to Liters</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Fluid Converters -->
+                    <div class="col-xl-3 col-lg-4 col-md-6 mb-4">
+                        <div class="card h-100">
+                            <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center" style="cursor: pointer" data-bs-toggle="collapse" data-bs-target="#fluidConverters">
+                                <h2 class="h5 mb-0">Fluid Converters</h2>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div id="fluidConverters" class="collapse">
+                                <div class="card-body">
+                                    <div class="list-group">
+                                        <a href="tools/converters/fluid/flow-converter.html" class="list-group-item list-group-item-action">Flow Converter</a>
+                                        <a href="tools/converters/fluid/flow-mass-converter.html" class="list-group-item list-group-item-action">Flow - Mass Converter</a>
+                                        <a href="tools/converters/fluid/concentration-solution.html" class="list-group-item list-group-item-action">Concentration - Solution Converter</a>
+                                        <a href="tools/converters/fluid/viscosity-dynamic.html" class="list-group-item list-group-item-action">Viscosity - Dynamic Converter</a>
+                                        <a href="tools/converters/fluid/viscosity-kinematic.html" class="list-group-item list-group-item-action">Viscosity - Kinematic Converter</a>
+                                        <a href="tools/converters/fluid/flow-molar.html" class="list-group-item list-group-item-action">Flow - Molar Converter</a>
+                                        <a href="tools/converters/fluid/permeability.html" class="list-group-item list-group-item-action">Permeability Converter</a>
+                                        <a href="tools/converters/fluid/mass-flux-density.html" class="list-group-item list-group-item-action">Mass Flux Density Converter</a>
+                                        <a href="tools/converters/fluid/concentration-molar.html" class="list-group-item list-group-item-action">Concentration - Molar Converter</a>
+                                        <a href="tools/converters/fluid/surface-tension.html" class="list-group-item list-group-item-action">Surface Tension Converter</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Area Converters -->
+                    <div class="col-xl-3 col-lg-4 col-md-6 mb-4">
+                        <div class="card h-100">
+                            <div class="card-header bg-warning text-dark d-flex justify-content-between align-items-center" style="cursor: pointer" data-bs-toggle="collapse" data-bs-target="#areaConverters">
+                                <h2 class="h5 mb-0">Area Converters</h2>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div id="areaConverters" class="collapse">
+                                <div class="card-body">
+                                    <div class="list-group">
+                                        <a href="tools/converters/area/sq-meters-to-sq-feet.html" class="list-group-item list-group-item-action">Square Meters to Square Feet</a>
+                                        <a href="tools/converters/area/acres-to-sq-meters.html" class="list-group-item list-group-item-action">Acres to Square Meters</a>
+                                        <a href="tools/converters/area/sq-km-to-sq-miles.html" class="list-group-item list-group-item-action">Square Kilometers to Square Miles</a>
+                                        <a href="tools/converters/area/hectares-to-acres.html" class="list-group-item list-group-item-action">Hectares to Acres</a>
+                                        <a href="tools/converters/area/sq-yards-to-sq-meters.html" class="list-group-item list-group-item-action">Square Yards to Square Meters</a>
+                                        <a href="tools/converters/area/sq-inches-to-sq-cm.html" class="list-group-item list-group-item-action">Square Inches to Square Centimeters</a>
+                                        <a href="tools/converters/area/sq-feet-to-sq-yards.html" class="list-group-item list-group-item-action">Square Feet to Square Yards</a>
+                                        <a href="tools/converters/area/sq-meters-to-hectares.html" class="list-group-item list-group-item-action">Square Meters to Hectares</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pressure Converters -->
+                    <div class="col-xl-3 col-lg-4 col-md-6 mb-4">
+                        <div class="card h-100">
+                            <div class="card-header d-flex justify-content-between align-items-center" style="background-color: #6f42c1; color: white; cursor: pointer" data-bs-toggle="collapse" data-bs-target="#pressureConverters">
+                                <h2 class="h5 mb-0">Pressure Converters</h2>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div id="pressureConverters" class="collapse">
+                                <div class="card-body">
+                                    <div class="list-group">
+                                        <a href="tools/converters/pressure/psi-to-bar.html" class="list-group-item list-group-item-action">PSI to Bar</a>
+                                        <a href="tools/converters/pressure/bar-to-kpa.html" class="list-group-item list-group-item-action">Bar to Kilopascal</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Heat Converters -->
+                    <div class="col-xl-3 col-lg-4 col-md-6 mb-4">
+                        <div class="card h-100">
+                            <div class="card-header bg-danger text-white d-flex justify-content-between align-items-center" style="cursor: pointer" data-bs-toggle="collapse" data-bs-target="#heatConverters">
+                                <h2 class="h5 mb-0">Heat Converters</h2>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div id="heatConverters" class="collapse">
+                                <div class="card-body">
+                                    <div class="list-group">
+                                        <a href="tools/converters/heat/calories-to-joules.html" class="list-group-item list-group-item-action">Calories to Joules</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Electricity Converters -->
+                    <div class="col-xl-3 col-lg-4 col-md-6 mb-4">
+                        <div class="card h-100">
+                            <div class="card-header bg-info text-white d-flex justify-content-between align-items-center" style="cursor: pointer" data-bs-toggle="collapse" data-bs-target="#electricityConverters">
+                                <h2 class="h5 mb-0">Electricity Converters</h2>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div id="electricityConverters" class="collapse">
+                                <div class="card-body">
+                                    <div class="list-group">
+                                        <a href="tools/converters/electricity/watts-to-kilowatts.html" class="list-group-item list-group-item-action">Watts to Kilowatts</a>
+                                        <a href="tools/converters/electricity/charge-converter.html" class="list-group-item list-group-item-action">Charge Converter</a>
+                                        <a href="tools/converters/electricity/linear-charge-density.html" class="list-group-item list-group-item-action">Linear Charge Density Converter</a>
+                                        <a href="tools/converters/electricity/electric-resistivity.html" class="list-group-item list-group-item-action">Electric Resistivity Converter</a>
+                                        <a href="tools/converters/electricity/electric-conductance.html" class="list-group-item list-group-item-action">Electric Conductance Converter</a>
+                                        <a href="tools/converters/electricity/electric-conductivity.html" class="list-group-item list-group-item-action">Electric Conductivity Converter</a>
+                                        <a href="tools/converters/electricity/surface-charge-density.html" class="list-group-item list-group-item-action">Surface Charge Density Converter</a>
+                                        <a href="tools/converters/electricity/volume-charge-density.html" class="list-group-item list-group-item-action">Volume Charge Density Converter</a>
+                                        <a href="tools/converters/electricity/current-converter.html" class="list-group-item list-group-item-action">Current Converter</a>
+                                        <a href="tools/converters/electricity/linear-current-density.html" class="list-group-item list-group-item-action">Linear Current Density Converter</a>
+                                        <a href="tools/converters/electricity/surface-current-density.html" class="list-group-item list-group-item-action">Surface Current Density Converter</a>
+                                        <a href="tools/converters/electricity/electric-field-strength.html" class="list-group-item list-group-item-action">Electric Field Strength Converter</a>
+                                        <a href="tools/converters/electricity/electric-potential.html" class="list-group-item list-group-item-action">Electric Potential Converter</a>
+                                        <a href="tools/converters/electricity/electric-resistance.html" class="list-group-item list-group-item-action">Electric Resistance Converter</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mathematics Section -->
+            <div class="col-12">
+                <h2 class="section-title border-bottom pb-2 mb-4">Mathematics</h2>
+                <div class="row g-4">
+                    <div class="col-lg-4 col-md-6">
+                        <div class="card h-100">
+                            <div class="card-header bg-info text-white">
+                                <h3 class="h5 mb-0">Basic Calculators</h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="list-group">
+                                    <a href="tools/calculators/math/scientific-calculator.html" class="list-group-item list-group-item-action">Scientific Calculator</a>
+                                    <a href="tools/calculators/math/fraction-calculator.html" class="list-group-item list-group-item-action">Fraction Calculator</a>
+                                    <a href="tools/calculators/math/percentage-calculator.html" class="list-group-item list-group-item-action">Percentage Calculator</a>
+                                    <a href="tools/calculators/math/random-number-generator.html" class="list-group-item list-group-item-action">Random Number Generator</a>
+                                    <a href="tools/calculators/math/percent-error-calculator.html" class="list-group-item list-group-item-action">Percent Error Calculator</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6">
+                        <div class="card h-100">
+                            <div class="card-header bg-success text-white">
+                                <h3 class="h5 mb-0">Advanced Calculators</h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="list-group">
+                                    <a href="tools/calculators/math/exponent-calculator.html" class="list-group-item list-group-item-action">Exponent Calculator</a>
+                                    <a href="tools/calculators/math/binary-calculator.html" class="list-group-item list-group-item-action">Binary Calculator</a>
+                                    <a href="tools/calculators/math/hex-calculator.html" class="list-group-item list-group-item-action">Hex Calculator</a>
+                                    <a href="tools/calculators/math/half-life-calculator.html" class="list-group-item list-group-item-action">Half-Life Calculator</a>
+                                    <a href="tools/calculators/math/quadratic-formula-calculator.html" class="list-group-item list-group-item-action">Quadratic Formula Calculator</a>
+                                    <a href="tools/calculators/math/log-calculator.html" class="list-group-item list-group-item-action">Log Calculator</a>
+                                    <a href="tools/calculators/math/ratio-calculator.html" class="list-group-item list-group-item-action">Ratio Calculator</a>
+                                    <a href="tools/calculators/math/root-calculator.html" class="list-group-item list-group-item-action">Root Calculator</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6">
+                        <div class="card h-100">
+                            <div class="card-header bg-warning">
+                                <h3 class="h5 mb-0">Number Theory</h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="list-group">
+                                    <a href="tools/calculators/math/lcm-calculator.html" class="list-group-item list-group-item-action">Least Common Multiple Calculator</a>
+                                    <a href="tools/calculators/math/gcf-calculator.html" class="list-group-item list-group-item-action">Greatest Common Factor Calculator</a>
+                                    <a href="tools/calculators/math/factor-calculator.html" class="list-group-item list-group-item-action">Factor Calculator</a>
+                                    <a href="tools/calculators/math/rounding-calculator.html" class="list-group-item list-group-item-action">Rounding Calculator</a>
+                                    <a href="tools/calculators/math/matrix-calculator.html" class="list-group-item list-group-item-action">Matrix Calculator</a>
+                                    <a href="tools/calculators/math/scientific-notation-calculator.html" class="list-group-item list-group-item-action">Scientific Notation Calculator</a>
+                                    <a href="tools/calculators/math/big-number-calculator.html" class="list-group-item list-group-item-action">Big Number Calculator</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Text Tools Section -->
+            <div class="col-12">
+                <h2 class="section-title border-bottom pb-2 mb-4">Text Tools</h2>
+                <div class="row g-4">
+                    <div class="col-lg-4 col-md-6">
+                        <div class="card h-100">
+                            <div class="card-header bg-warning">
+                                <h3 class="h5 mb-0">Text Analysis</h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="list-group">
+                                    <a href="tools/text/word-counter.html" class="list-group-item list-group-item-action">Word Counter</a>
+                                    <a href="tools/text/case-converter.html" class="list-group-item list-group-item-action">Case Converter</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SEO Tools Section -->
+            <div class="col-12">
+                <h2 class="section-title border-bottom pb-2 mb-4">SEO Tools</h2>
+                <div class="row g-4">
+                    <div class="col-lg-4 col-md-6">
+                        <div class="card h-100">
+                            <div class="card-header bg-secondary text-white">
+                                <h3 class="h5 mb-0">Meta Tags</h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="list-group">
+                                    <a href="tools/seo/meta-tag-generator.html" class="list-group-item list-group-item-action">Meta Tag Generator</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Image Tools Section -->
+            <div class="col-12">
+                <h2 class="section-title border-bottom pb-2 mb-4">Image Tools</h2>
+                <div class="row g-4">
+                    <div class="col-lg-4 col-md-6">
+                        <div class="card h-100">
+                            <div class="card-header bg-dark text-white">
+                                <h3 class="h5 mb-0">Image Utilities</h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="list-group">
+                                    <a href="tools/image/color-picker.html" class="list-group-item list-group-item-action">Color Picker</a>
+                                    <a href="tools/image/base64-converter.html" class="list-group-item list-group-item-action">Base64 Converter</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ad Section -->
+        <div class="row mt-4">
+            <div class="col-12">
+                <div class="ad-placeholder p-3 bg-light text-center">
+                    <p class="text-muted mb-0">Advertisement Space</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer will be loaded dynamically -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JavaScript -->
+    <script src="js/main.js"></script>
+    <script src="js/tools-loader.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.card-header[data-bs-toggle="collapse"]');
+            
+            cards.forEach(card => {
+                card.addEventListener('click', function(e) {
+                    // Prevent the default Bootstrap collapse behavior
+                    e.stopPropagation();
+                    
+                    // Find the current row
+                    const currentRow = this.closest('.row.g-4');
+                    
+                    // Get all cards in the current row
+                    const cardsInRow = Array.from(currentRow.querySelectorAll('.card-header[data-bs-toggle="collapse"]'));
+                    
+                    // Get all collapse elements in the current row
+                    const collapsesInRow = cardsInRow.map(card => 
+                        document.querySelector(card.getAttribute('data-bs-target'))
+                    );
+                    
+                    // Check if the row is currently collapsed
+                    const isRowCollapsed = !collapsesInRow.some(collapse => collapse.classList.contains('show'));
+                    
+                    // First, collapse all cards in all rows
+                    document.querySelectorAll('.collapse').forEach(collapse => {
+                        collapse.classList.remove('show');
+                        const header = document.querySelector(`[data-bs-target="#${collapse.id}"]`);
+                        if (header) {
+                            const chevron = header.querySelector('.fa-chevron-down');
+                            if (chevron) {
+                                chevron.style.transform = 'rotate(0deg)';
+                            }
+                        }
+                    });
+                    
+                    // Then, if the row was collapsed, expand all cards in the current row
+                    if (isRowCollapsed) {
+                        collapsesInRow.forEach(collapse => {
+                            collapse.classList.add('show');
+                        });
+                        
+                        cardsInRow.forEach(card => {
+                            const chevron = card.querySelector('.fa-chevron-down');
+                            chevron.style.transform = 'rotate(180deg)';
+                        });
+                    }
+                });
+
+                // Add hover effect to card headers
+                card.addEventListener('mouseenter', function() {
+                    this.style.opacity = '0.9';
+                });
+                card.addEventListener('mouseleave', function() {
+                    this.style.opacity = '1';
+                });
+            });
+        });
+    </script>
+</body>
+</html> 

@@ -1,0 +1,134 @@
+/* Accessibility Styles */
+
+/* High Contrast Mode */
+[data-contrast="high"] {
+    --text-color: #ffffff;
+    --background-color: #000000;
+    --link-color: #ffff00;
+    --border-color: #ffffff;
+}
+
+[data-contrast="high"] body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+[data-contrast="high"] a {
+    color: var(--link-color);
+}
+
+[data-contrast="high"] .btn {
+    border: 2px solid var(--border-color);
+}
+
+/* Focus Indicators */
+:focus {
+    outline: 3px solid #4A90E2;
+    outline-offset: 2px;
+}
+
+/* Font Size Controls */
+body[data-font-size="large"] {
+    font-size: 1.2rem;
+}
+
+body[data-font-size="larger"] {
+    font-size: 1.4rem;
+}
+
+body[data-font-size="largest"] {
+    font-size: 1.6rem;
+}
+
+/* Accessibility Controls */
+.accessibility-controls {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 100;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Voice Input Button */
+.voice-input-btn {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 100;
+}
+
+/* Skip Navigation Link */
+.skip-nav {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: #000;
+    color: white;
+    padding: 8px;
+    z-index: 100;
+    transition: top 0.3s;
+}
+
+.skip-nav:focus {
+    top: 0;
+}
+
+/* ARIA Labels */
+[aria-label] {
+    cursor: help;
+}
+
+/* Screen Reader Only Text */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+/* Keyboard Focus Styles */
+.keyboard-focus :focus {
+    outline: 3px solid #4A90E2;
+    outline-offset: 2px;
+}
+
+/* Motion Reduced */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* Color Blind Friendly Palette */
+:root {
+    --colorblind-blue: #0077BB;
+    --colorblind-orange: #EE7733;
+    --colorblind-cyan: #00CCBB;
+    --colorblind-magenta: #EE3377;
+    --colorblind-red: #CC3311;
+    --colorblind-teal: #009988;
+    --colorblind-grey: #BBBBBB;
+}
+
+/* Increased Touch Targets */
+button, 
+.btn,
+input[type="button"],
+input[type="submit"] {
+    min-height: 44px;
+    min-width: 44px;
+    padding: 10px;
+} 
